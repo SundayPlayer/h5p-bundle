@@ -188,7 +188,7 @@ class H5PIntegration
 
     public function getFilteredParameters(Content $content)
     {
-        $params = $content->getParameters();
+        $params = json_decode($content->getParameters());
 
         $contentData = [
             'title' => 'Interactive Content',
@@ -199,7 +199,7 @@ class H5PIntegration
                 'majorVersion' => $content->getLibrary()->getMajorVersion(),
                 'minorVersion' => $content->getLibrary()->getMinorVersion(),
             ],
-            'params' => $params,
+            'params' => json_encode($params->params),
             'filtered' => $content->getFilteredParameters(),
             'embedType' => 'div',
             'metadata' => $content->getLibrary()->getMetadataSettings()
